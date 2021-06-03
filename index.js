@@ -16,7 +16,7 @@ const app = express();
 const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // WEB3 CONFIG
-const web3 = new Web3(process.env.RPC_URL)
+const web3 = new Web3(process.env.main)
 
 // Uniswap Factory Contract: https://etherscan.io/address/0xc0a47dfe034b400b47bdad5fecda2621de6c4d95#code
 const uniswapFactoryContract = new web3.eth.Contract(abook.UNISWAP.factoryABI, abook.UNISWAP.factoryAddress)
@@ -28,13 +28,19 @@ const UNISWAP_EXCHANGE_ABI = abook.UNISWAP.exchangeABI
 const kyberRateContract = new web3.eth.Contract(abook.KYBER.rateABI, abook.KYBER.rateAddress)
 
 async function checkPair(args) {
+  console.log(1);
   const { inputTokenSymbol, inputTokenAddress, outputTokenSymbol, outputTokenAddress, inputAmount } = args
 
+  console.log(2);
   const exchangeAddress = await uniswapFactoryContract.methods.getExchange(outputTokenAddress).call()
+  console.log(3);
   const exchangeContract = new web3.eth.Contract(UNISWAP_EXCHANGE_ABI, exchangeAddress)
+  console.log(4);
 
   const uniswapResult = await exchangeContract.methods.getEthToTokenInputPrice(inputAmount).call()
+  console.log(5);
   let kyberResult = await kyberRateContract.methods.getExpectedRate(inputTokenAddress, outputTokenAddress, inputAmount, true).call()
+  console.log(6);
 
   console.table([{
     'Input Token': inputTokenSymbol,
@@ -64,9 +70,9 @@ async function monitorPrice() {
 
     await checkPair({
       inputTokenSymbol: 'ETH',
-      inputTokenAddress: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-      outputTokenSymbol: 'MKR',
-      outputTokenAddress: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
+      inputTokenAddress: abook.tokens.ETH,
+      outputTokenSymbol: 'UNI',
+      outputTokenAddress: abook.tokens.UNI,
       inputAmount: web3.utils.toWei('1', 'ETHER')
     })
 
