@@ -21,5 +21,7 @@ abook.KYBER.rateAddress = "0x96b610046d63638d970e6243151311d8827d69a5";
 abook.tokens.MKR = "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2";
 abook.tokens.ETH = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 abook.tokens.UNI = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984";
+abook.tokens.USDC = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48";
+abook.tokens.DAI = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 
 module.exports = abook;
