@@ -71,8 +71,8 @@ async function monitorPrice() {
     await checkPair({
       inputTokenSymbol: 'ETH',
       inputTokenAddress: abook.tokens.ETH,
-      outputTokenSymbol: 'UNI',
-      outputTokenAddress: abook.tokens.UNI,
+      outputTokenSymbol: 'MKR',
+      outputTokenAddress: abook.tokens.MKR,
       inputAmount: web3.utils.toWei('1', 'ETHER')
     })
 
