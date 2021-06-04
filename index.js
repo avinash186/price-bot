@@ -16,10 +16,10 @@ const app = express();
 const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // WEB3 CONFIG
-const web3 = new Web3(process.env.main)
+const web3 = new Web3(process.env.ropsten)
 
 // Uniswap Factory Contract: https://etherscan.io/address/0xc0a47dfe034b400b47bdad5fecda2621de6c4d95#code
-const uniswapFactoryContract = new web3.eth.Contract(abook.UNISWAP.factoryABI, abook.UNISWAP.factoryAddress)
+const uniswapFactoryContract = new web3.eth.Contract(abook.UNISWAP.factoryABI, abook.ropsten.UNISWAPFactoryAddress)
 
 // Uniswap Exchange Template: https://etherscan.io/address/0x09cabec1ead1c0ba254b09efb3ee13841712be14#code
 const UNISWAP_EXCHANGE_ABI = abook.UNISWAP.exchangeABI
