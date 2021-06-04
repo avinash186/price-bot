@@ -39,7 +39,7 @@ async function checkPair(args) {
 
   const uniswapResult = await exchangeContract.methods.getEthToTokenInputPrice(inputAmount).call()
   console.log(5);
-  let kyberResult = await kyberRateContract.methods.getExpectedRate(inputTokenAddress, outputTokenAddress, inputAmount, true).call()
+  //let kyberResult = await kyberRateContract.methods.getExpectedRate(inputTokenAddress, outputTokenAddress, inputAmount, true).call()
   console.log(6);
 
   console.table([{
@@ -47,8 +47,8 @@ async function checkPair(args) {
     'Output Token': outputTokenSymbol,
     'Input Amount': web3.utils.fromWei(inputAmount, 'Ether'),
     'Uniswap Return': web3.utils.fromWei(uniswapResult, 'Ether'),
-    'Kyber Expected Rate': web3.utils.fromWei(kyberResult.expectedRate, 'Ether'),
-    'Kyber Min Return': web3.utils.fromWei(kyberResult.slippageRate, 'Ether'),
+    // 'Kyber Expected Rate': web3.utils.fromWei(kyberResult.expectedRate, 'Ether'),
+    // 'Kyber Min Return': web3.utils.fromWei(kyberResult.slippageRate, 'Ether'),
     'Timestamp': moment().tz('America/Chicago').format(),
   }])
 }
@@ -71,8 +71,8 @@ async function monitorPrice() {
     await checkPair({
       inputTokenSymbol: 'ETH',
       inputTokenAddress: abook.tokens.ETH,
-      outputTokenSymbol: 'MKR',
-      outputTokenAddress: abook.tokens.MKR,
+      outputTokenSymbol: 'DAI',
+      outputTokenAddress: abook.tokens.DAI,
       inputAmount: web3.utils.toWei('1', 'ETHER')
     })
 
